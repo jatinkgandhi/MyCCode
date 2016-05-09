@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+  
 unsigned char isEnvVarOn(char *VarName)
 {
         unsigned char return_val;
