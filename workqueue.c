@@ -3,7 +3,7 @@ struct work
 {
    unsigned int milliseconds;
    unsigned char completion_status;
-   void (*do)(void);
+   void (*work_to_be_done)(void);
 }
 
 struct workqueue
