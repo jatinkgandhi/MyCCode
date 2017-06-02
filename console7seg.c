@@ -4,6 +4,12 @@ Just for fun...  */
 #include <stdio.h>
 #include <string.h>
 
+#ifdef __WIN32__
+#define CLEAR_COMMAND   "cls"
+#else
+#define CLEAR_COMMAND   "clear"
+#endif // __WIN32
+
 struct _digit{
 	char *firstline;
 	char *secondline;
@@ -123,7 +129,7 @@ main()
 	{
 		for(value = 0; value < 234; value++)
 		{
-			system("clear");
+			system(CLEAR_COMMAND);
 			Print7Seg(value);
 			usleep(300000);
 
