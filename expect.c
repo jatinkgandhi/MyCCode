@@ -57,18 +57,18 @@ check for negative cases..,
 /* FIXME: Not suitable for Micro-controllers with less RAM. Optimize this */
 int expect(char *value, int max_charwait)
 {
-	char ch;
-	static char local_stream[255];
-	int local_stream_idx;
-	static char expected_str[255];
-	int    expected_str_idx;
-	int index;
-	index = 0;
-	if(NULL == value || '\0' == value[0]) return 0;
+    char ch;
+    static char local_stream[255];
+    int local_stream_idx;
+    static char expected_str[255];
+    int    expected_str_idx;
+    int index;
+    index = 0;
+    if(NULL == value || '\0' == value[0]) return 0;
 
-	if(0 >= max_charwait) max_charwait = 40;
+    if(0 >= max_charwait) max_charwait = 40;
 
-	memset(expected_str,0,sizeof(expected_str));
+    memset(expected_str,0,sizeof(expected_str));
 
     for(expected_str_idx = 0; expected_str_idx < strlen(value); expected_str_idx++)
     {
@@ -76,12 +76,12 @@ int expect(char *value, int max_charwait)
         expected_str[expected_str_idx] = (ch >='A' && ch<='Z') ? (ch + 32) : (ch);
     }
 
-	memset(local_stream, 0, sizeof(local_stream));
-	local_stream_idx = 0;
+    memset(local_stream, 0, sizeof(local_stream));
+    local_stream_idx = 0;
 
-	while(1 && (0 != max_charwait--))
-	{
-		ch = getch(); /* FIXME: replace actual stream e.g. UART etc.., */
+    while(1 && (0 != max_charwait--))
+    {
+        ch = getch(); /* FIXME: replace actual stream e.g. UART etc.., */
 
         if(local_stream_idx < sizeof(local_stream))
         {
@@ -90,14 +90,14 @@ int expect(char *value, int max_charwait)
             local_stream[local_stream_idx++] = (ch >='A' && ch<='Z') ? (ch + 32) : (ch);
             printf("%s\n",local_stream);
         }
-		if(ch ==  expected_str[index])
-		{
-			index++;
-			if(index == strlen(expected_str))
-			{
-				/* Found whole string */
-				/* Check for negative scenario */
-				if(NULL != strstr(local_stream, "not") &&
+        if(ch ==  expected_str[index])
+        {
+            index++;
+            if(index == strlen(expected_str))
+            {
+                /* Found whole string */
+                /* Check for negative scenario */
+                if(NULL != strstr(local_stream, "not") &&
                    NULL == strstr(expected_str, "not")
                 )
                 {
@@ -111,12 +111,13 @@ int expect(char *value, int max_charwait)
                         return 1;
                 }
 
-			}
-		}else
-		{
-			index = 0;
-		}
-	}
-	return 0;
+            }
+        }else
+        {
+            index = 0;
+        }
+    }
+    return 0;
 }
+
 
