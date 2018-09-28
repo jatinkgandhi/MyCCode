@@ -1,3 +1,4 @@
+/* Run and check what it does exactly */
 #include <stdio.h>
 
 #define BUFF_SIZE       (255)
