@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define LINE_LENGTH		(255)
 
@@ -26,8 +27,8 @@ int main(int argc, char **argv)
 	
 	if(i32LongestWordLen > 0)
 	{
-	    pchLongestWord[i32LongestWordLen--] = '\0';
-		printf("Longest word is : %s, Length: %d\n", pchLongestWord, i32LongestWordLen );
+	    pchLongestWord[i32LongestWordLen+1] = '\0';
+		printf("Longest word is : %s\nLength: %d\n", pchLongestWord, i32LongestWordLen );
 	}
 	
 }
@@ -60,6 +61,11 @@ int SP_GetLongestWord(char *line, int length, char **longestword)
 		current_len ++;
 		line ++;
 	}
-	
+	/* Boundry case single word is passed. */
+	if(0 == maxlength && current_len > 0)
+	{
+	    *longestword = line - current_len;
+	    maxlength = current_len-1; // exclude ' ' or '\t' character
+	}
 	return maxlength;
 }
