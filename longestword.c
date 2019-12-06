@@ -65,7 +65,7 @@ int SP_GetLongestWord(char *line, int length, char **longestword)
 	if(0 == maxlength && current_len > 0)
 	{
 	    *longestword = line - current_len;
-	    maxlength = current_len-1; // exclude ' ' or '\t' character
+	    maxlength = current_len-1; // we run till string terminator '\0';
 	}
 	return maxlength;
 }
