@@ -1,2 +1,2 @@
-# MyCCode
-My C code experiments
+# My Code
+My coding experiments
